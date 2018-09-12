@@ -1,0 +1,60 @@
+body{
+	margin: 0 auto;
+    width: 1000px;
+	height: 1000px;                        /*整体框的大小*/
+	border: 0px solid black;
+	font-size: 12px;
+}
+.div1{
+	width: 350px;
+	height: 340px;
+	border: 1px solid black;
+}
+
+/*定义几个常用的字体样式*/
+.font1{
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 2px;
+	margin-left: 2px;
+}
+
+.span1{
+	/*background-color: green;*/  /*控制文字一栏的大小，以行间距*/
+	display:block;
+}
+
+.span1 a{
+	/*float:right;*/
+	margin-left:180px;    /*控制更多牛人的位置*/
+
+}
+
+.faceul{
+	width: 350px;
+	height: 85px;
+	/*background-color=green*/    /*控制一行图片的大小*/
+	list-style-type: none;
+	padding: 0;
+}
+
+.faceul li{
+	float: left;
+	width:107px;              /*控制图片加名字整个盒子的大小*/
+	height:78px;
+	/*background-color: blue;*/
+	margin-left: 6px;
+	text-align:center;  /*text-align表示放在该元素的其他元素会左右居中放置*/
+}
+
+.faceul img{
+margin-top: 2px;
+width:60px;                /*控制图片大小*/
+height:60px;
+}
+
+/*定义几种超链接的样式*/
+
+a:link{
+	text-decoration: none;
+}

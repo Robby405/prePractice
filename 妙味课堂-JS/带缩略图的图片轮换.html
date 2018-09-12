@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>带缩略图的图片轮换</title>
+<style type="text/css">
+	body{
+		background: url(7.jpg) no-repeat;
+	}
+	#contain{
+		width: 500px;
+		height: 400px;
+		margin: 100px auto;
+		position: relative;
+	}
+	#pic{
+		width: 500px;
+		height: 370px;
+				border:2px solid white;
+	}
+	.icon-left,.icon-right{
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		display: block;
+		font-size: 20px;
+		border-radius: 15px;
+		background: orange;
+		text-align: center;
+		font-weight: bold;
+		color: white;
+		top: 185px;
+		opacity: 0.5;
+	}
+	.icon-left:hover,.icon-right:hover{
+		opacity: 1;
+	}
+	.icon-left{		
+		left: 20px;
+	}
+	.icon-right{
+		right: 20px;
+	}
+	#list{
+		list-style: none;
+		position: absolute;
+		top: 370px;
+		left: 200px;
+		width: 100px;
+		padding: 0;
+		margin: 12px 0 0 0;
+	}
+	#list li{
+		float: left;
+		width: 12px;
+		height: 12px;
+		border-radius: 6px;
+		background: #fff;
+		margin-left: 10px; 
+	}
+	.sm-img{
+		width: 70px;
+		height: 50px;
+		position: absolute;
+		top: -68px;
+		left: -22px;
+		border:3px solid white;
+		display: none;
+	}
+	.box{
+		display: block;
+			width: 0;
+			border-bottom: 10px solid transparent;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-top: 10px solid white;
+			position: absolute;
+			top: -12px;
+			left: 6px;
+			display: none;
+	}
+</style>
+</head>
+<body>
+<div id="contain">
+	<img src="9.jpeg" id="pic">
+	<span class="icon-left"><</span>
+	<span class="icon-right">></span>
+	<ul id="list">
+		<li></li>
+		<img class="sm-img">
+		<div class="box"></div>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	var oImg=document.getElementById('pic');
+	var l_Btn=document.getElementsByClassName('icon-left');
+	var r_Btn=document.getElementsByClassName('icon-right');
+	var oUl=document.getElementById('list')[0];
+	var oLI=document.getElementsByTagName('li');
+	var oSmImg=document.getElementsByClassName('sm-img')[0];
+	var oBox=document.getElementsByClassName('box')[0];
+	var arrImg=['9.jpeg','2.jpg','3.jpg','4.jpg'];
+	var num=0;
+
+	l_Btn[0].onclick=function(){
+		if(num==0){
+			num=arrImg.length;
+		}
+		num--;
+		oImg.src=arrImg[num];
+	}
+	r_Btn[0].onclick=function(){
+		if(num==arrImg.length-1){
+			num=-1;
+		}
+		num++;
+		oImg.src=arrImg[num];
+	}
+
+	for(var i=0;i<oLI.length;i++){
+		oLI[i].index=i;  //自定义属性
+		oLI[i].onmouseover=function(){
+			oLI[this.index].style.background='orange';
+			oSmImg.style.display='block';
+			oSmImg.style.left=-22+22*(this.index)+'px';
+			oSmImg.src=arrImg[this.index];
+			oBox.style.display='block';
+			oBox.style.left=6+22*this.index+'px';
+		}
+		oLI[i].onmouseout=function(){
+			oSmImg.style.display='none';
+			oBox.style.display='none';
+			oLI[this.index].style.background='white';
+		}
+		oLI[i].onclick=function(){
+			oImg.src=arrImg[this.index];
+		}
+	}
+
+</script>
+</body>
+</html>

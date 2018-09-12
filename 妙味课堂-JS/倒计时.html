@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>	倒计时</title>
+
+</head>
+<body>
+		<script type="text/javascript">
+			var iNow=new Date();
+			// var iNew=new Date(2018,3,17,15,15,0);  //自己设置的时间,数字形式
+			var iNew=new Date('April 17,2018 20:17:0');//字符串格式
+			var t=Math.floor((iNew-iNow)/1000);  //毫秒->秒  
+			//向下取整Math.floor
+			var str=Math.floor(t/86400)+'天'+Math.floor(t%86400/3600)+'时'+Math.floor(t%86400%3600/60)+'分'+t%60+'秒';
+			alert(str);
+			
+			
+
+
+		</script>
+</body>
+</html>

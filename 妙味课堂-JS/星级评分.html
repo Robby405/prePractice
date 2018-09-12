@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>星级评分</title>
+	<style type="text/css">
+	#contain{
+		width: 300px;
+		height: 40px;
+		border:1px solid #ccc;
+	}	
+	#content{
+		width: 220px;
+		height: 30px;
+		margin-top: 5px;
+		line-height: 30px;
+	}
+	.all{
+		color: red;
+	}
+	.star{
+		color: #c3c0c0;
+	}
+	#txt{
+		margin-left: 5px;
+	}
+	</style>
+</head>
+<body>
+ <div id="contain">
+ 	<div id="content">
+ 		<span class="all" >*</span>总体评价： 
+ 		<span class="star" >★</span>
+ 		<span class="star" >★</span>
+ 		<span class="star" >★</span>
+ 		<span class="star">★</span>
+ 		<span class="star">★</span>
+ 		<span id="txt"></span>
+ 	</div>
+ </div>
+<script type="text/javascript">
+	var cont=['很差','较差','还行','推荐','满意'];
+	var ostar=document.getElementsByClassName('star');
+	var txt=document.getElementById('txt');
+	
+	var isChose=false;  //定义一个变量，解决点击事件和移出事件的冲突
+
+	for(var i=0;i<ostar.length;i++){
+		// 鼠标悬浮事件		
+		ostar[i].onmouseover=function(){
+			if(!isChose){
+				this.clr=true; //自定义属性，控制星星是否被选中
+				for(var j=0;j<ostar.length;j++){
+					if(ostar[j].clr==true){
+						if(j<2){
+							dis(j);
+						}
+						else{
+							org(j);
+						}
+					}
+				}
+			}
+		}
+		
+		// 鼠标点击事件
+		ostar[i].onclick=function(){
+			this.clr=true;  
+			isChose=true;
+			clear();
+			for(var j=0;j<ostar.length;j++){
+				if(ostar[j].clr==true){
+					if(j<2){
+						dis(j);
+					}
+					else{
+						org(j);
+					}
+				}
+			}			
+		}
+
+		//鼠标移出事件
+		ostar[i].onmouseout=function(){
+			if(!isChose){
+				clear();
+				txt.innerHTML='';
+			}
+		}
+	}
+	
+	//变成橘色星星
+	function org(s){
+		for(var i=0;i<=s;i++){
+			ostar[i].clr=false;
+			ostar[i].style.color='orange';
+			txt.innerHTML=cont[i];
+			
+		}
+		txt.style.color='orange';
+	}
+	//变成灰色星星
+	function dis(s){
+		for(var i=0;i<=s;i++){	
+			ostar[i].clr=false;
+			ostar[i].style.color='gray';
+			txt.innerHTML=cont[i];	
+		}
+		txt.style.color='gray';
+	}
+	//清除所有星星的颜色
+	function clear(){
+		for(k=0;k<ostar.length;k++)
+		ostar[k].style.color='#c3c0c0';
+	}
+</script>
+</body>
+</html>

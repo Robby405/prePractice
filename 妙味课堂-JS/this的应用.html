@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>this的应用</title>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+
+<script type="text/javascript">
+	var aBtn=document.getElementsByTagName('input');
+	var that=null;
+
+	for(var i=0;i<aBtn.length;i++){
+		/* aBtn[i].onclick=function(){
+			 //this.style.background="yellow";
+		 	that=this;//先把this赋值给别的对象
+			fn1();
+		};*/
+		aBtn[i].onclick=fn1;
+	}
+	function fn1(){
+		// that.style.background="yellow";
+		this.style.background="red";
+	}
+</script>
+</body>
+</html>

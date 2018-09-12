@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>闭包</title>
+</head>
+<body>
+<script type="text/javascript">
+/*	function myfun() {
+		return function(){
+			return ('********');
+		}
+	}
+	//alert(myfun);   //输出整个函数表达式
+    // alert(myfun());  //输出匿名函数表达式
+
+    //调用方式1
+    alert(myfun()());
+
+    //调用方式2
+    var bb=myfun();
+    alert(bb());
+ */
+
+//通过闭包访问局部变量
+/* function myfn(){
+ 	var bb='局部变量bb'；
+ }
+ alert(bb); //局部变量函数外部无法访问
+ */
+
+ function myfn(){
+ 	var bb='局部变量bb';
+ 	return function(){
+ 		return(bb);//通过匿名函数返回myfn()的局部变量bb;
+ 	}
+ }
+
+//调用方式1
+alert(myfn()());
+//调用方式2
+var csbb=myfn();
+alert(csbb());
+</script>
+</body>
+</html>

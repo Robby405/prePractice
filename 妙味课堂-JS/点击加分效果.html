@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>点击加分效果</title>
+	<style type="text/css">
+		#contain{
+			border: 1px solid black;
+			margin: 200px auto;
+			width: 300px;
+			height: 30px;
+			position: relative;
+			background-size: 0;
+			/*background-color: lightblue;*/
+		}
+		span{
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			display: block;
+			float: left;
+			position: absolute;
+			opacity: 1;
+			font-size: 20px;
+		}
+		#show{
+			width: 0;
+			height: 30px;
+			background: #89d7f1;
+			z-index: -1;
+			float: left;
+			max-width: 300px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="contain">
+	<div id="show"></div>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+	<span>+1</span>
+</div>
+<script type="text/javascript" src='my.js'></script>
+<script type="text/javascript">
+	var aSpan=document.getElementsByTagName('span');
+	var oDiv=document.getElementById('contain');
+	var oShow=document.getElementById('show');
+
+	var num=0;
+	var timer=null;
+	var bg=parseInt(getStyle(oShow,'width'));
+	for(var i=0;i<aSpan.length;i++){
+		aSpan[i].style.left=i*30+'px';
+	}
+
+	oDiv.onclick=function(){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			bg+=30;
+			oShow.style.width=bg+'px';
+			doMove(aSpan[num],'top',10,-200,);
+			opacity(aSpan[num],0,400);
+			opacity(oShow,1,1000);
+			num++;
+			if(num==10){
+				clearInterval(timer);
+
+			}
+		},100)
+			
+	}
+</script>
+</body>
+</html>

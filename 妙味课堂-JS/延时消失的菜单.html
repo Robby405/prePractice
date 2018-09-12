@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>延时消失的菜单</title>
+	<style type="text/css">
+		#contain{
+			width: 500px;
+			background: #11b1fd;
+			margin:0 auto;
+			position: relative;
+			border-radius: 3px;
+		}
+		#lis{
+			list-style: none;
+			height: 40px;
+			margin: 10px;
+			padding: 0;
+			
+		}
+		#lis li{
+			color: white;
+			padding: 9px 4px;
+			float: left;
+			margin: 0;
+		}
+		#lis li a{
+			text-decoration: none;
+			color: white;
+			padding: 3px 8px;
+		}
+		#lis li a:hover{
+			background: #164663;
+			border-radius: 10px;
+		}
+		span{
+			float: right;
+			margin-top: 9px;
+			color: white;
+		}
+		.menu-item{
+			position: absolute;
+			top: 50px;
+			background: #dad5d585;
+			display: none;
+			font-size: 12px;
+			left: 0px;
+			padding: 0 10px;
+			border-radius: 5px;
+		}
+		.menu-item ul{
+			list-style: none;
+			padding: 0;
+			margin-top: 0px;
+			color: #356da7;
+		}
+		.menu-item li{
+			float: left;
+			padding: 5px;
+		}
+		.menu-item li a{
+			text-decoration: none;
+			color: #356da7;
+		}
+		.menu-item li a:hover{
+			text-decoration: underline;
+		}
+		.box{
+			border-bottom: 5px solid #dad5d585 ;
+			border-top: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-left: 5px solid transparent;
+			position: absolute;
+			top: -10px;
+			left: 30px;
+		}
+	</style>
+</head>
+<body>
+<div id="contain">
+	<ul id="lis">
+		<li><a href="">首页</a></li>		
+		<li>|</li>
+		<li><a href="">关于我们</a></li>
+		<li>|</li>
+		<li><a href="">作品</a></li>
+		<li>|</li>
+		<li><a href="">博客</a></li>
+		<span>>>更多</span>
+
+	</ul>
+	<div class="menu-item">
+			<div class="box"></div>
+			<ul>
+				<li><a href="">最近更新</a></li>
+				<li>|</li>
+				<li><a href="">活动</a></li>
+				<li>|</li>
+				<li><a href="">试听报名</a></li>
+				<li>|</li>
+				<li><a href="">学员反馈</a></li>
+			</ul>
+	</div>
+	<div class="menu-item">
+			<div class="box"></div>
+			<ul>
+				<li><a href="">妙味讲师</a></li>
+				<li>|</li>
+				<li><a href="">培训方式</a></li>
+				<li>|</li>
+				<li><a href="">培训理念</a></li>
+				<li>|</li>
+				<li><a href="">联系我们</a></li>
+			</ul>
+	</div>
+	<div class="menu-item">
+			<div class="box"></div>
+			<ul>
+				<li><a href="">般固</a></li>
+				<li>|</li>
+				<li><a href="">MATRIX</a></li>
+				<li>|</li>
+				<li><a href="">留学e网</a></li>
+				<li>|</li>
+				<li><a href="">ECMall</a></li>
+			</ul>
+	</div>
+	<div class="menu-item" >
+			<div class="box"></div>
+			<ul>
+				<li><a href="">JS教程</a></li>
+				<li>|</li>
+				<li><a href="">弹出层效果</a></li>
+				<li>|</li>
+				<li><a href="">3D球面标签云</a></li>
+				<li>|</li>
+				<li><a href="">Windows计算器</a></li>
+			</ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var list=document.getElementById('lis');
+	var oLi=list.getElementsByTagName('a');
+	var oMenu=document.getElementsByClassName('menu-item');
+	var oBox=document.getElementsByClassName('box');
+	var timer1=null;
+	var timer2=null;
+
+	//一级菜单
+	for(var i=0;i<oLi.length;i++){
+		oLi[i].index=i;
+		oLi[i].onmouseover=function(){
+			clearTimeout(timer1);
+			clear();
+			oMenu[this.index].style.display='block';
+			oMenu[this.index].style.left=this.index*45+'px';
+			oBox[this.index].style.left=this.index*35+30+'px';
+		}
+		oLi[i].onmouseout=function(){
+			timer1=setTimeout(
+			clear,1000);
+		}
+	}
+
+	//二级菜单
+	for(var i=0;i<oMenu.length;i++){
+		oMenu[i].index=i;
+		oMenu[i].onmouseover=function(){
+			clearTimeout(timer1);
+			clearTimeout(timer2);
+			oMenu[this.index].style.display='block';
+
+		}
+		oMenu[i].onmouseout=function(){
+			clearTimeout(timer1);
+			clearTimeout(timer2);
+			timer2=setTimeout(clear,1000);
+		}
+	}
+
+	function clear(){
+		for(var i=0;i<oMenu.length;i++){
+			oMenu[i].style.display='none';
+		}
+	}
+
+</script>
+</body>
+</html>

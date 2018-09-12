@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>闭包中的this</title>
+</head>
+<body>
+<script type="text/javascript">
+/*	var name='The window';
+	var obj=new Object();
+	obj.name='my obj';
+	obj.get=function () {
+		return this.name;
+	}
+	var obj={
+		name:'my obj',
+		get:function(){
+			return this.name;
+		}
+	}
+	alert(obj.get());//返回'my obj';
+var name='The window';
+var obj={
+		name:'my obj',
+		get:function(){
+		return function(){
+			return this.name;
+		    }
+	    }
+	}
+	alert(obj.get());//这次返回的是全局变量'The window'
+	alert(obj.get().call(obj))//这次返回的是'my obj'，因为call()强制改变了this的指向
+*/
+var name='The window';
+var obj={
+		name:'my obj',
+		get:function(){
+		//这里this指的是对象，这里为obj
+		var self=this;
+		return function(){
+			//闭包里的this指的是window
+			return self.name;
+		    }
+	    }
+	}
+	alert(obj.get()());
+</script>
+</body>
+</html>

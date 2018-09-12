@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>  
+    <meta http-equiv="Content-Type" content="text/html;  charset=utf-8" />  
+    <head>  
+        <script language="javascript" type="text/javascript">  
+         //定义全局变量
+         directX=1;//X轴的方向
+         directY=1;//y轴的方向
+         sunX=0;  //小球的坐标x;
+         sunY=0;   //小球的坐标y;
+         speed=2;
+         function sunMove(){
+            sunX+=directX*speed;
+            sunY+=directY*speed;
+             
+            //修改div的left top值
+            sundiv.style.top=sunY+"px";
+            sundiv.style.left=sunX+"px";
+
+            //判断什么时候，转变方法
+            //x方法（offsetWidth可以返回，当前这个事件宽度）
+            if(sunX+sundiv.offsetWidth>=document.body.clientWidth||sunX<=0){
+                directX=-directX;
+            }
+             if(sunY+sundiv.offsetHeight>=document.body.clientHeight||sunY<=0){
+                directY=-directY;
+            }
+        }
+            setInterval("sunMove()",10);
+        
+        </script>  
+    </head>  
+    <body style="width: 400px;height: 300px;border: black 1px solid;"> 
+    <div id="sundiv" style="position: absolute;">
+        <img src="bg2.jpg" style="width: 100px;" />
+    </div> 
+    
+    </body>  
+</html>  

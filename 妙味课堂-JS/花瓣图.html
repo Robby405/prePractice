@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>图片切换</title>
+	<style type="text/css">
+		#contain{
+			width: 800px;
+			height: 450px;
+			background: #845c3a;
+			margin: 100px auto;
+			padding: 0;
+		}
+		.btn{
+			margin-left: 30px;
+			border-radius: 10px;
+			border:0;
+			width: 60px;
+			background: #e0d1d1;
+			padding: 0;
+			margin-top: 15px;
+		}
+		.left{
+			margin-top: 20px;
+			margin-left: 15px;
+			padding: 0; 
+			float: left;
+			background: white;
+		}
+		.left img{
+			width: 410px;
+			height: 280px;
+			padding: 20px;
+		}
+		.right{
+			float: right;
+			margin-top: 20px;
+			margin-right: 15px;
+			background: white;
+		}
+		.right img{
+			width: 260px;
+			height: 280px;
+			padding: 20px;
+		}
+		.left p,.right p{
+			padding: 0;
+			margin: 0;
+			text-align: center;
+		}
+		.left span,.right span{
+			width: 30px;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+<div id="contain">
+	<div>
+	<input type="button" value="上一组" class="btn">
+	<input type="button" value="下一组" class="btn">
+	</div>
+	<div class="left">
+		<img src="" class="left-img">
+		<p></p>
+		<span></span>
+	</div>
+	<div class="right">
+		<img src="" class="right-img">
+		<p></p>
+		<span></span>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var oBtn=document.getElementsByClassName('btn');
+	var l_Img=document.getElementsByClassName('left-img');
+	var r_Img=document.getElementsByClassName('right-img');
+	var oP=document.getElementsByTagName('p');
+	var oSpan=document.getElementsByTagName('span');
+
+	var arrImg_l=['2.jpg','3.jpg','4.jpg','5.jpg'];
+	var arrImg_r=['6.jpg','7.jpg','8.jpg'];
+	var num=0;
+	var sum=0;
+	set();   //初始化
+
+	//显示图片，p,span标签的内容
+	function set(){
+		l_Img[0].src=arrImg_l[num];
+		oP[0].innerHTML='第一组第'+parseInt(num+1)+'张';
+		oSpan[0].innerHTML=1+num+'/'+arrImg_l.length;
+		r_Img[0].src=arrImg_r[sum];
+		oP[1].innerHTML='第二组第'+parseInt(sum+1)+'张';
+		oSpan[1].innerHTML=1+sum+'/'+arrImg_r.length;
+	}
+
+	//左边图片向下显示
+	function l_next(){
+		num++;
+		if(num==arrImg_l.length){
+			num=0;
+		}
+		set();
+	}
+
+	//右边图片向下显示
+	function r_next(){
+		sum++;
+		if(sum==arrImg_r.length){
+			sum=0;
+		}
+		set();
+	}
+
+	//左边图片向前显示
+	function l_pre(){				
+		num--;
+		if(num==-1){
+			num=arrImg_l.length-1;
+		}
+		set();		
+	}
+	
+	//右边图片向前显示
+	function r_pre(){		
+		sum--;		
+		if(sum==-1){
+			sum=arrImg_r.length-1;
+		}
+		set();
+	}
+
+	//上一组按钮点击绑定事件
+	oBtn[0].onclick=function(){
+		l_pre();
+		r_pre();
+	};
+
+	//下一组按钮绑定事件
+	oBtn[1].onclick=function(){
+		l_next();
+		r_next();
+	};
+
+	//左边图片点击显示左边下一张事件
+	l_Img[0].onclick=l_next;
+	//右边图片点击显示左边下一张事件
+	r_Img[0].onclick=r_next;
+</script>
+</body>
+</html>

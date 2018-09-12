@@ -1,0 +1,30 @@
+body{
+	margin:0 auto;
+	width: 1000px;
+    height: 363px;
+    
+}
+.div2{  
+    width: 1000px;  
+    height: 500px;  
+    background-image: url("./bg3.png");
+    position:absolute;  
+
+}  
+.div2 img{
+	width:40px;
+	height:40px;
+}
+
+
+  
+/*表格样式*/  
+.control{  
+   margin-top: 500px;
+	/*margin-left: 200px;*/
+	text-align: center;
+	width: 1000px;
+	height: 100px;
+	position: absolute;
+	border:1px solid gray;    
+}  

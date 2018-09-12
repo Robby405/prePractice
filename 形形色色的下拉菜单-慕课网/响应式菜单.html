@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>响应式菜单</title>
+	<style type="text/css">
+		body{
+			margin: 0 auto;
+		}
+		ul{
+			padding: 0;
+			margin: 0;
+		}
+		a{
+			text-decoration: none;
+			color: white;
+			font-size: 14px;
+			padding: 0 3px;
+			display: block;
+		}
+		.menu li{
+			display: block;
+			float: left;
+			margin: 3px;
+			background: grey;
+			width: 140px;
+			text-align: center;
+			color: white;
+			font-size: 9pt;
+		}
+		#logo{
+			background: white;
+			width: 230px;
+		}
+		#logo a{
+			color: grey;
+			font-size: 35pt;
+			background: white;
+		}
+		#toplogo{
+			display: none;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#toplogo a{
+			color: black;
+			font-size: 35pt;
+		}
+		.rMenu{
+			display: none;
+		}
+		@media only screen and (min-width:585px) and (max-width: 823px){
+			#logo{
+				display: none;
+			}
+			#toplogo{
+				display: block;
+				width: 100%;
+			}
+			.menu{
+				width: 585px;
+			}
+		}
+		@media only screen and (max-width: 585px){
+			#logo{
+				display: none;
+			}
+			#toplogo{
+				display: block;
+			}
+			.menu{
+				width: 100%;
+			}
+			.menu li{
+				visibility: hidden;
+				width: 100%;
+			}
+			.rMenu{
+				display: block;
+				text-align: right;
+
+			}
+		}
+	</style>
+</head>
+<body>
+<ul class="menu" id="rList">
+	<div id="toplogo">
+		<a href="#">慕课网</a>
+		<a href="#" class="rMenu"><img src="menu_logo.png"></a>
+	</div>
+	<li><a href="#">课程大厅</a><br>
+	IT课程都在这里啦
+	</li>
+	<li><a href="#">学习中心</a><br>
+	好好学习天天向上
+	</li>
+	<li id="logo"><a href="#">慕课网</a>
+	</li>
+	<li><a href="#">个人中心</a><br>
+	个人中心 修改密码
+	</li>
+	<li><a href="#">关于我们</a><br>
+	IT课程都在这里啦
+	</li>
+</ul>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#rList").on("click",function(){
+			if($("ul li").hasClass("active")){
+				$("ul li").css("visibility","hidden").removeClass("active");
+			}else{
+				$("ul li").css("visibility","visible").addClass("active");
+			}
+		});
+	});
+</script>
+</body>
+</html>

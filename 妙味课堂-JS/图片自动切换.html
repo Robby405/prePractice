@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片自动切换</title>
+	<style type="text/css">
+		#content{
+			width: 400px;
+			height: 250px;
+			margin: 100px auto;
+			border: 1px solid gray; 
+			position: relative;
+			overflow: hidden;
+		}
+		img{
+			width: 400px;
+			height: 250px;
+		}
+		.title{
+			width: 400px;
+			height: 60px;
+			background: black;
+			opacity: 0.5;
+			position: absolute;
+			top: 250px;
+			z-index: 2;
+			color: white;
+			text-align: center;
+			line-height: 60px;
+		}
+		#content ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#content ul li{
+			float: left;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+<div id="content">
+	<ul>
+	<li>
+		<img src="2.jpg">
+		<span class="title">这是一幅夕阳西下的图片</span>
+	</li>
+	<li>
+		<img src="3.jpg">
+		<span class="title">这是一张森林里的小桥的图片</span>
+	</li>
+	<li>
+	<img src="4.jpg">
+	<span class="title">这是海边独木桥的图片</span>
+	</li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	var cont=document.getElementById('content');
+	var aImg=document.getElementsByTagName('img');
+	var oTxt=document.getElementsByClassName('title');
+	var ali=document.getElementsByTagName('li');
+
+	var timer1=null,timer2=null,timer3=null;
+	var num=0;
+	for(var i=0;i<ali.length;i++){
+		ali[i].style.left=i*400+'px';
+	}
+
+	// function title_up(obj){	
+	// 	clearInterval(timer1);
+	// 	clearInterval(timer2);
+	// 	timer1=setTimeout(function(){
+	// 		var top=parseInt(getStyle(obj,'top'));
+	// 		top-=60;
+	// 		obj.style.top=top+'px';
+	// 		if(parseInt(obj.style.top)<=190){
+	// 			obj.style.top='190px';
+	// 			clearInterval(timer1);
+	// 			title_down(oTxt[num]);
+	// 			// change(ali[num])
+	// 		}			
+	// 	},500);
+
+	// }
+
+	// function title_down(a){
+	// 	clearInterval(timer1);
+	// 	clearInterval(timer2);
+
+	// 	timer2=setTimeout(function(){
+	// 		var top=parseInt(getStyle(a,'top'));
+	// 		top+=60;
+	// 		a.style.top=top+'px';
+	// 		if(parseInt(a.style.top)>=250){
+	// 			clearInterval(timer2);
+	// 			a.style.top='250px';
+	// 			num++;
+	// 			num%=3;		
+	// 		}
+	// 	},500)
+	// }
+	// title_up(oTxt[num]);	
+	change();
+	//图片移动函数
+	function change(obj){
+		clearInterval(timer3);
+		timer3=setInterval(function(){
+			for(var i=0;i<ali.length;i++){			
+			
+			if(parseInt(getStyle(oTxt[i],'top'))>190)
+				oTxt[i].style.top=parseInt(getStyle(oTxt[i],'top'))-60+'px'	;
+			if(parseInt(getStyle(oTxt[i],'top'))==190){
+					oTxt[i].style.top='190px';
+			}
+			ali[i].style.left=parseInt(getStyle(ali[i],'left'))-400+'px';
+				// oTxt[i].style.top=parseInt(getStyle(oTxt[i],'top'))+30+'px'	;
+			// 	if(parseInt(getStyle(oTxt[i],'top'))>=250)
+			// 
+			// 		}	
+				
+			//循环播放			
+			if(ali[i].style.left=='-400px'){	
+				ali[i].style.left=parseInt(getStyle(ali[i],'left'))+1200+'px';			
+			}		
+		}
+	}
+	,1000)	
+		// change(ali[num]);	
+
+	}
+	// 图片轮播	
+			
+	
+	function getStyle(obj,attr){
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+	}
+</script>
+</body>
+</html>

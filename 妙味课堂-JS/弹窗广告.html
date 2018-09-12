@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>弹窗广告</title>
+	<style type="text/css">
+		body{
+			background: url('2.jpg');
+		}
+		img{
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+<img src="1.jpg" id="ad" >
+
+<script type="text/javascript">
+	var ad=document.getElementById('ad');
+
+	setTimeout(function(){
+		ad.style.display='inline-block';
+
+		setTimeout(function(){
+			ad.style.display='none';
+		},3000);
+	},2000);
+</script>
+</body>
+</html>

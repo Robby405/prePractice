@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>编辑列表</title>
+	<style type="text/css">
+	#contain{
+		width: 600px;
+		margin: 0 auto;
+	}	
+	.top{
+		width: 600px;
+		height: 30px;
+		background: green;
+		color: white;
+		line-height: 30px;
+		padding-left: 30px; 
+		border:1px solid green;
+	}
+	#list{
+		width: 600px;
+		margin: 0;
+		list-style: none;
+		padding: 0;		
+	}
+	.lis{
+		line-height: 40px;
+		margin: 0;
+		padding-left: 30px;
+		width: 600px;
+		border: 1px solid green;
+	}
+	.edit{
+		background: #ccc;
+		margin-left: 20px;
+		border-radius: 3px;
+		padding: 3px;
+
+	}
+	.btn{
+		margin-left: 10px;
+		border-radius: 5px;
+		border:0;
+	}
+	</style>
+</head>
+<body>
+<div id="contain">
+	<div class="top">分类名称</div>
+	<ul id="list">
+		<li class="lis"><span>远程课堂开班了</span><span class="edit">编辑</span></li>
+		<li class="lis"><span>远程课堂开班了</span><span class="edit">编辑</span></li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	var oUL=document.getElementById('list');
+	var aLi=oUL.getElementsByTagName('li');
+	
+	for(var i=0;i<aLi.length;i++){
+		edit_evt(aLi[i]);
+	}
+	function edit_evt(oli) {
+		var oSpan=oli.getElementsByTagName('span');
+		var oInput=oli.getElementsByTagName('input');
+		var start=oli.getElementsByTagName('span')[0].innerHTML;
+		alert(start);
+		oSpan[1].onclick=function(){
+			oSpan[0].innerHTML='<input type="text"/><input type="button" value="保存" class="btn"/><input type="button" value="取消" class="btn"/>';
+			
+			oInput[1].onclick=function(){
+				oSpan[0].innerHTML=oInput[0].value;
+			}
+
+			oInput[2].onclick=function(){
+				oSpan[0].innerHTML=start;
+				alert(start);
+			}
+			// oSpan[1].style.display='visible';
+		}
+		
+
+	}
+		
+
+</script>
+</body>
+</html>

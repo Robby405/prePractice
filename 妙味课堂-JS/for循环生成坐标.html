@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>for循环生成坐标</title>
+	<style type="text/css">
+		div{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+<script type="text/javascript">
+	//逢十换行
+	/*var arr=document.getElementsByTagName('div');
+	for(var i=0;i<50;i++){
+		document.body.innerHTML+='<div></div>';
+	}
+	for(var i=0;i<arr.length;i++){		
+		arr[i].style.top=arr[i].style.top+parseInt(i/10)*60+"px";
+		arr[i].style.left=arr[i].style.left+(i%10)*60+"px";		
+	}*/
+	//生成V字型
+	var arr=document.getElementsByTagName('div');
+	for(var i=0;i<9;i++){
+		document.body.innerHTML+='<div></div>';
+	}
+	for(var i=0;i<arr.length;i++){
+		if(i>arr.length/2){
+			arr[i].style.top=50*(arr.length-i-1)+"px";
+			arr[i].style.left=arr[i].style.left+(i%10)*50+"px";	
+		}		
+		arr[i].style.top=arr[i].style.top+i*50+"px";
+		arr[i].style.left=arr[i].style.left+(i%10)*50+"px";	
+
+	 }
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+//原型模式
+    function Monster(){}
+       Monster.prototype={
+       	constructor:Monster,
+       	name:'喽啰',
+       	job:['巡山','打更'],
+       	run:function(){return this.name+'的工作是'+this.job}
+       }
+
+//构造函数和原型组合模式
+    function Monster(name,arr){
+    	constructor:Monster;
+    	this.name=name;
+    	this.job=arr;
+    }
+    Monster.prototype={
+         run:function(){return this.name+'的工作是'+this.job}
+    }
+    var monster1=new Monster('小旋风',['巡山','打更','砍柴']);
+    var monster2=new Monster('小钻风',['巡山','打更','挑水']);
+   // alert(monster1.run());
+    //alert(monster2.run());
+ //动态原型模式
+    function MonsterGo(name,arr){
+    	this.name=name;
+    	this.job=arr;
+    	if (typeof this.run!="function")//是对象只初始化一次 
+    	{
+    		alert('对象初始化');
+    		MonsterGo.prototype.run=function(){
+    		return this.name+'的工作是'+this.job;
+    	     }
+    	     alert('初始化结束');
+        }
+    }
+    
+    var monster1=new Monster('小旋风',['巡山','打更','砍柴']);
+    var monster2=new Monster('小钻风',['巡山','打更','挑水']);
+    alert(monster1.run());
+    alert(monster2.run());
+</script>
+</body>
+</html>

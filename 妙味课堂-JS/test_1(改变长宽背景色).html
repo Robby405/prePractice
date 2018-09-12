@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>设置样式</title>
+	<style type="text/css">
+	.settitle{
+		font:bold;
+		font-size: 22px;
+		display: block;
+		position: relative;
+	}	
+	input{
+		width: 80px;
+		height: 32px;
+		background: red;
+		color: white;
+		border:0;
+	}
+	.icon{
+		width: 100px;
+		height: 100px;
+		border:2px solid black;
+		margin-top: 20px;
+		margin-left: 20px;
+	}
+	#set{
+		width: 100%;
+		height: 100%;
+		background-color: #1d1b1b;
+		margin:0;
+		padding: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0.7;
+		text-align: center;
+		display: none;
+	}
+	.setCon{
+		width: 380px;
+		padding: 15px;
+		margin: 200px auto;
+		background-color: #6f6d6d;
+	}
+	.content{
+		width:380px;
+		height: 200px;
+		background: white; 
+	}
+	.title1,.title2,.title3{
+		color: black;
+		font-size: 15px;
+		opacity: 1;
+		padding: 25px 10px 0px 10px;
+		margin: 0;
+	}
+	.title1 span,.title2 span,.title3 span{
+		border:1px solid #ccc;
+		margin-left:10px;  
+		padding: 0 10px;
+		cursor: pointer;
+		width: 30px;
+	}
+
+	.title1 span{
+		padding: 0 15px;
+		color: white;
+	}
+	.title2 span,.title3 span{
+		background: #ccc6;
+	}
+	.red{
+		background:#bb5959;
+	}
+	.red:hover{
+		background: red;
+		
+	}
+	.yellow{
+		background: #d89213;
+	}
+	.yellow:hover{
+		background: yellow;
+	}
+	.blue:hover{
+		background: blue;
+	}
+	.blue{
+		background: #5e84b5;
+	}
+	.title2 span:hover,.title3 span:hover{
+		background: orange;
+	}
+	.content input{
+		background: blue;
+		color: white;
+		margin-top: 20px;
+	}
+	</style>
+</head>
+<body>
+<div>
+	<span class="settile">请为下面的DIV设置样式：<input type="button" name="" value="点击设置" id="setBtn"></span>
+	<div class="icon"></div>
+</div>
+<div id="set">
+	<div class="setCon">
+		<div class="content">
+			<p class="title1">请选择背景色：<span class="red">红</span><span class="yellow">黄</span><span class="blue">蓝</span></p>
+			<p class="title2">请选择宽(px)：<span>200</span><span>300</span><span>400</span></p>
+			<p class="title3">请选择高(px)：<span>200</span><span>300</span><span>400</span></p>
+			<input type="button" name="" value="恢复">
+			<input type="button" name="" value="确定">
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var icon=document.getElementsByClassName("icon")[0];
+	var title1=document.getElementsByClassName("title1")[0];
+	var title2=document.getElementsByClassName("title2")[0];
+	var title3=document.getElementsByClassName("title3")[0];
+	var set=document.getElementById("set");
+	//遮罩层
+	document.getElementById("setBtn").onclick=function(){
+		set.style.display="block";
+
+	}
+	
+	//改变颜色
+	document.getElementsByClassName("red")[0].onclick=function(){
+		icon.style.background="red";
+	}
+	document.getElementsByClassName("yellow")[0].onclick=function(){
+		icon.style.background="yellow";
+	}
+	document.getElementsByClassName("blue")[0].onclick=function(){
+		icon.style.background="none";
+	}
+
+	//改变宽度
+	title2.getElementsByTagName("span")[0].onclick=function(){
+		icon.style.width="200px";
+		alert(this);
+	}
+	title2.getElementsByTagName("span")[1].onclick=function(){
+		icon.style.width="300px";
+	}
+	title2.getElementsByTagName("span")[2].onclick=function(){
+		icon.style.width="400px";
+	}
+
+	title3.getElementsByTagName("span")[0].onclick=function(){
+		icon.style.height="200px";
+	}
+	title3.getElementsByTagName("span")[1].onclick=function(){
+		icon.style.height="300px";
+	}
+	title3.getElementsByTagName("span")[2].onclick=function(){
+		icon.style.height="400px";
+	}
+
+	//恢复和确定按钮
+	document.getElementsByTagName("input")[1].onclick=function() {	
+		set.style.display="none";
+		icon.style.width="100px";
+		icon.style.height="100px";
+	}
+	document.getElementsByTagName("input")[2].onclick=function() {	
+		set.style.display="none";
+	}
+</script>
+</body>
+</html>

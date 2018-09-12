@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>¶Ô±í¸ñ²Ù×÷</title>
+<style type="text/css">
+    *{
+    padding:0px;
+    margn:0px;
+    }
+    table#stuRecordTable{width:600px;margin:40px auto;text-align: center;}
+    table#stuRecordTable tr{height:30px;}
+</style>
+<script type="text/javascript">
+    function $(eleStr){
+        switch(eleStr.substr(0,1)){
+        case "#":
+            return document.getElementById(eleStr.substr(1));
+            break;
+        case ".":
+            return document.getElementsByClassName(eleStr.substr(1));
+            break;
+        case "_":
+            return document.getElementsByName(eleStr.substr(1));
+            break;
+        default:
+            return document.getElementsByTagName(eleStr);
+        break;
+        }
+    }
+
+    onload = function(){
+
+        doOperator();       
+    }
+
+    function doOperator(){
+
+        var updates =$(".update");
+        var dels =$(".del");
+        for (var i = 0; i < dels.length; i++) {
+            dels[i].onclick =   function(){
+                if(confirm("ÊÇ·ñÈ·¶¨É¾³ý£¿")){  //ÌáÊ¾ÊÇ·ñÉ¾³ý
+                    //var row = this.parentNode.parentNode; //È¡µ½tr¶ÔÏó
+                    //row.parentNode.removeChild(row);  //ÒÆ³ýtr
+                    $("#stuRecordTable").deleteRow(this.parentNode.parentNode.rowIndex);
+                }
+            }
+            updates[i].onclick = function(){
+                var operatorCell = this.parentNode.parentNode.getElementsByTagName("td")[1]; //È¡µ½Òª²Ù×÷µÄtd¶ÔÏó
+                //1.ÐÞ¸Ä°´Å¥ÉÏÓÐÁ½¸ö¹¦ÄÜ£ºÐÞ¸Ä£¬È·¶¨ÐÞ¸Ä
+                if(this.value == "ÐÞ¸Ä"){
+                    this.value = "È·¶¨";
+                    operatorCell.innerHTML ="<input value='"+operatorCell.innerHTML+"'/>";//°ÑÄÚÈÝ±ä³ÉÎÄ±¾¿ò
+                    //×öÐÞ¸Ä²Ù×÷
+                }else{
+                    operatorCell.innerHTML =operatorCell.getElementsByTagName("input")[0].value;//°ÑÎÄ±¾¿ò±ä³ÉÄÚÈÝ
+                    this.value = "ÐÞ¸Ä";
+                    //×öÈ·¶¨ÐÞ¸Ä
+                }
+            }
+        }
+    } 
+    function addRow(){
+        var rs = $("#stuRecordTable").rows;  //tableÈ¡µ½ËùÓÐµÄÐÐ
+        //if("Ìí¼Ó"==document.getElementById("buttonId").value){
+         //document.getElementById("buttonId").value="È·¶¨";
+         
+       
+         var insertR = $("#stuRecordTable").insertRow(rs.length-1); //¸ø±í¸ñÌí¼ÓÒ»ÐÐ(²»°üµ¥Ôª¸ñ)
+        
+         var c1 = insertR.insertCell(0);       
+       
+        
+         var c2 = insertR.insertCell(1);
+       
+        
+        var c3 = insertR.insertCell(2);
+    
+         
+         c3.innerHTML ='<input type="button" value="É¾³ý" class="del"/><input type="button" value="ÐÞ¸Ä" class="update"/>';
+
+         c1.innerHTML="<input value='"+c1.innerHTML+"' id='one'/>";
+         c2.innerHTML="<input value='"+c2.innerHTML+"' id='two'/>";
+        
+     //}
+     // else("È·¶¨"==document.getElementById("buttonId").value){
+       //else{ 
+            
+             var a1=document.getElementById("one").value;
+           
+             alert(a1);
+
+             var a2=document.getElementById("two").value;
+             alert(a2);
+             c1=a1;
+             c2=a2;
+             alert("ÊÇ·ñ¼ÌÐøÌí¼Ó£¿")
+             
+            // document.getElementById("buttonId").value="Ìí¼Ó";
+
+        // }
+     
+      
+       
+        doOperator();
+
+        var cs = rs[1].cells; //È¡µ½µ±Ç°ÐÐµÄËùÓÐµ¥Ôª¸ñ
+        //alert(cs[1].innerHTML);
+    }
+
+   
+</script>
+</head>
+<body>
+    <table id="stuRecordTable" border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>ÐÕÃû</th> 
+            <th>³É¼¨</th>
+            <th>±à¼­</th>
+        </tr>
+        <tr>
+            <td>Êé</td>
+            <td>90</td>
+            <td><input type="button" value="É¾³ý" class="del"/>
+            <input type="button" value="ÐÞ¸Ä" class="update"/></td>
+        </tr>
+        <tr>
+            <td>ÑÐ</td>
+            <td>80</td>
+            <td><input type="button" value="É¾³ý" class="del"/>
+            <input type="button" value="ÐÞ¸Ä" class="update"/></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+            <input type="button" value="Ìí¼Ó" onclick="addRow()" id="buttonId" />
+
+            
+        </tr>
+    </table>
+</body>
+</html>

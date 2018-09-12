@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>widgets</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.min.js"></script>
+	<script type="text/javascript" src="widgets(2).js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+  <!-- <script type="text/javascript">
+    $(function(){
+      $("#pd").progressbar({value:50});
+    });
+  </script> -->
+  <style type="text/css">
+   /* #menu{
+      width: 150px;
+    }*/
+    .ui-menu:after{
+      content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0;
+    }
+    .ui-menu .ui-menu-item{
+      display: inline-block;
+      float: left;
+      margin: 0;
+      padding: 10;
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+  progressbar<br>
+  <div id="pd"></div><br><br>
+   
+   <br><br>menu<br>
+     <ul id="menu">
+       <li>
+          <a href="#">Java</a>
+         <ul>
+           <li><a href="#">Java EE</a></li>
+           <li><a href="#">Java SE</a></li>
+           <li><a href="#">Java ME</a></li>
+         </ul>
+       </li>
+       <li>C</li>
+       <li>C++</li>
+       <li>PHP</li>
+     </ul>
+  
+  <br><br>slider<br>
+  <span id="span">0</span>
+      <div id="slider"></div>
+
+  <br><br>spinner<br>
+  <input id="input">
+  <button id="btn">getValue</button>
+
+  <br><br>tab<br>
+  <div id="tabs">
+    <ul>
+      <li><a href="#hello1">Hello</a></li>
+      <li><a href="#hello2">Hello</a></li>
+      <li><a href="#hello3">Hello</a></li>
+    </ul>
+    <div id="hello1">
+      hello1
+      hello
+      hello
+      hello
+      hello
+    </div>
+    <div id="hello2">
+      hello2
+      hello
+      hello
+      hello
+      hello
+    </div>
+    <div id="hello3">
+      hello3
+      hello
+      hello
+      hello
+      hello
+    </div>
+    
+  </div>
+</body>
+</html>

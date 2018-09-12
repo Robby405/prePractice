@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>抖动函数封装</title>
+	<style type="text/css">
+		img{
+			position: absolute;
+			left: 100px;
+			top: 150px;
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+<img src="1.jpg">
+<img src="2.jpg">
+<img src="3.jpg">
+<img src="4.jpg">
+<img src="5.jpg">
+<img src="6.jpg">
+<img src="7.jpg">
+<img src="8.jpg">
+
+
+<script type="text/javascript">
+	var aImg=document.getElementsByTagName('img'); 
+
+	for(var i=0;i<aImg.length;i++){
+		aImg[i].index=i;
+		aImg[i].style.left=80+i*110+'px';
+		aImg[i].onmouseover=function(){
+				aImg[this.index].style.top='150px';
+				shake(this,'top');
+		}
+	}
+	
+	function shake(obj,attr,endFn){
+		var pos=parseInt(getStyle(obj,attr));
+		var arr=[];
+		var num=0;
+
+		for(var i=20;i>0;i-=2){
+			arr.push(i,-i);
+		}
+		arr.push(0);
+
+		clearInterval(obj.shake);
+		obj.shake=setInterval(function(){
+			obj.style[attr]=pos+arr[num]+'px';
+			num++;
+			if(num===arr.length){
+				clearInterval(shake);
+				endFn&&endFn();
+			}
+		},50);
+	}
+	function getStyle(obj,attr){
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+	}
+</script>
+</body>
+</html>

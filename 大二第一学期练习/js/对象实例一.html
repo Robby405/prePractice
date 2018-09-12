@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+/*	function Hero(type,home,weapon) {
+		this.type=type;
+		this.home=home;
+		// if(weapon==undefined){
+		// 	this.weapon='剑';
+		// }else{
+		// 	this.weapon=weapon;
+		// }
+		this.weapon=weapon?weapon:'剑';
+	}
+	var user=new Hero('战士','新手村','斧子');
+	alert(user.type+'\n'+user.home+'\n'+user.weapon);
+	*/
+//遍历属性和方法
+	/*function Hero(name,type,home,weapon) {
+		this.name=name;
+		this.type=type;
+		this.home=home;
+		this.weapon=weapon?weapon:'剑';
+		this.skill=function(){
+			alert(this.name+'向敌人发动了普通攻击');
+		}
+	}
+	var user=new Hero('阿吉','战士','新手村');
+	//删除属性和方法
+	delete user.name;
+	delete user.skill;
+	document.write('user包含如下属性和方法：<hr/>');
+	for(var i in user){
+		if(typeof(user[i])=='function'){
+		document.write('方法'+i+':'+user[i]+'<br/>');
+	}else{
+		document.write('属性-'+i+':'+user[i]+'<br/>');
+	}
+	}*/
+
+	function Poeple(){
+		this.type='人';
+	}
+
+	Poeple.prototype.getType=function(){
+		alert('这是一个人');
+	}
+
+	function Student(name,sex){
+		Poeple.call(this);
+		this.name=name;
+		this.sex=sex;
+	}
+
+	Student.prototype=new Poeple();
+	Student.prototype.say=function(){
+		alert('我是一个学生');
+	}
+
+	var xiaoming=new Student('小明','男');
+	alert(xiaoming.type);
+    alert(xiaoming.name);
+    xiaoming.getType();
+    xiaoming.say();
+
+</script>
+</body>
+</html>

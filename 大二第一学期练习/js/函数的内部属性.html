@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>JS函数</title>
+</head>
+<body>
+<div id="div1" style="width: 100px;height: 100px;background:red">1111111</div>
+<script type="text/javascript">
+	//在函数外部使用this,this就指的是windows对象
+	//alert(this);
+	//全局变量可以看做windows对象的属性
+	var x=1;
+	// alert(windows.x);
+	// alert(this.x);
+
+	//函数内部调用
+	function test(){
+		var x=0;
+		alert(x);  //x=0
+		alert(this.x);  //x=1
+		alert(this);
+	}
+	//test();
+	//用new来调用，那么绑定的将是新创建的对象
+	function test2(){
+		this.x=100;
+	}
+	var obj=new test2();
+	//alert(x);  //x=1
+	//alert(obj.x);   //x=100
+
+    //作为某个对象的方法调用
+    function test3(){
+    	alert(this.x);
+    }
+    var objo={};
+    objo.x=1000;
+    objo.m=test3;
+    //alert(x);   //x=1
+    //objo.m();  //x=1000
+    
+    //事件监听函数中的this
+    var div1=document.getElementById('div1');
+    div1.onclick=function(){
+    	alert(this.innerHTML);
+    };
+</script>
+
+
+</body>
+</html>

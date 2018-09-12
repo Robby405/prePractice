@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>歌曲选中</title>
+	<style type="text/css">
+	body{
+		background: #ccc6;
+		font-size: 12px;
+	}
+	input{
+		margin:0 8px;
+	}
+	#contain{
+		width: 300px;
+		background: white;
+		margin: 150px auto;
+	}
+	#lis{
+		list-style: none;
+		padding: 0;
+		border-bottom: 1px solid #ccc;
+		margin: 0;
+	}
+	#lis li{
+		height: 25px;
+		line-height: 25px;
+		margin-top: 2px;
+	} 
+	#lis li span{
+		width: 100px;
+		height: 25px;
+		margin-right: 0px;
+		/*display: block;*/
+		float: right;
+	}
+	#select{
+		width: 200px;
+		height: 30px;
+		/*padding: 3px;*/
+		margin-top: 5px;
+	}
+	
+	</style>
+</head>
+<body>
+<div id="contain">
+	<ul id="lis">
+		<li><input type="checkbox"/>私奔<span>梁博</span></li>
+		<li><input type="checkbox"/>北京北京<span>梁博、黄勇</span></li>
+		<li><input type="checkbox"/>我爱你中国<span>梁博</span></li>
+		<li><input type="checkbox"/>花火<span>梁博</span></li>
+		<li><input type="checkbox"/>回来<span>梁博</span></li>
+		<li><input type="checkbox"/>爱要有你才完美<span>梁博、那英</span></li>
+	</ul>
+	<div id="select"><input type="checkbox" />全选</div>
+</div>
+<script type="text/javascript">
+	var ul=document.getElementById('ul');
+	var oli=document.getElementsByTagName('li');
+	var osel=document.getElementById('select');
+	var ainput=osel.getElementsByTagName('input')[0];
+
+	for(var i=0;i<oli.length;i++){
+		oli[i].index=i;
+		if(i%2==0){
+			oli[i].style.background='#add8e66b';
+		}
+		//列表单个点击选中
+		oli[i].onclick=function(){
+			if(this.getElementsByTagName('input')[0].checked)
+				this.style.background='#ccc';
+			else{
+				if(this.index%2==0){
+					this.style.background='#add8e66b';
+				}else{
+					this.style.background='white';
+				}
+			}
+		}
+	}
+	//全选按钮
+	ainput.onclick=function(){
+		if(ainput.checked){
+			for(var i=0;i<oli.length;i++){
+				oli[i].style.background='#ccc';
+				oli[i].getElementsByTagName('input')[0].checked='true';
+			}
+		}else{
+			for(var i=0;i<oli.length;i++){
+				oli[i].getElementsByTagName('input')[0].checked=!oli[i].getElementsByTagName('input')[0].checked;
+				if(i%2==0){
+					oli[i].style.background='#add8e66b';
+				}else{
+					
+					oli[i].style.background='white';
+				}
+			}
+		}
+	}	
+</script>
+</body>
+</html>

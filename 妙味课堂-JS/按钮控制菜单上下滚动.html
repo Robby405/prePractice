@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>按钮控制菜单的上下滚动</title>
+	<style type="text/css">
+	#contain{
+		width: 300px;
+		height: 500px;
+		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
+	}	
+	.head{
+		width: 280px;
+		height: 30px;
+		line-height: 30px;
+		padding:0 10px;
+		background: blue;
+		border-radius: 10px 10px 0 0;
+		z-index: 10; 
+	}
+	#up,#down{
+		width: 300px;
+		height: 30px;
+		background: #617786;
+		text-align: center;
+		line-height: 30px;
+		position: absolute;
+		cursor: pointer;
+		z-index: 2;
+	}
+	#up{
+		top: 30px;
+		z-index: 10;
+	}
+	#down{
+		top: 470px;
+	}
+	#content{		
+		height: 410px;
+		position: absolute;
+		top: 60px;	
+		z-index: -1;		
+	}
+	#content ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow: hidden;
+		z-index: -1;
+		
+	}
+	#content ul li{
+		width: 300px;
+		height: 60px;
+		background: #99a7ce;
+		overflow: hidden;
+		border-bottom: 1px solid #ccc;
+		color: white;
+		text-align: center;
+		line-height: 60px;
+		font-size: 20px;
+	}
+	</style>
+</head>
+<body>
+<div id="contain">
+	<div class="head">妙味课堂</div>
+	<div id="up">向上滚动</div>
+	<div id="content">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+	</div>
+	<div id="down">向下滚动</div>
+</div>
+
+<script type="text/javascript">
+	var cont=document.getElementById('content');
+	var up=document.getElementById('up');
+	var down=document.getElementById('down');
+	var oUl=cont.getElementsByTagName('ul');
+	var timer1=null,timer2=null;
+
+	up.onmousedown=function(){
+		clearInterval(timer1);
+		if(parseInt(getStyle(cont,'top'))>-140)
+			timer1=setInterval(function(){	
+				var dis=parseInt(getStyle(cont,'top'))-1;
+				if(dis<=-140){
+					clearInterval(timer1);
+				}
+				cont.style.top=dis+'px';
+			},10);		
+	}
+	up.onmouseup=function(){
+		clearInterval(timer1);
+	}
+	down.onmousedown=function(){
+		clearInterval(timer1);
+		clearInterval(timer2);
+		if(parseInt(getStyle(cont,'top'))<60)		
+			timer2=setInterval(function(){	
+				var dis=parseInt(getStyle(cont,'top'))+1;
+				if(dis>=60){
+					clearInterval(timer2);
+				}
+				cont.style.top=dis+'px';
+			},10);
+	}
+	down.onmouseup=function(){
+		clearInterval(timer2);
+	}
+	function getStyle(obj ,attr){  
+        return obj.currentStyle ? obj.currentStyle[attr] :getComputedStyle(obj ,false)[attr];  
+    }  
+</script>
+</body>
+</html>

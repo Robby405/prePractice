@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>自定义属性</title>
+	<style type="text/css">
+		li{
+			list-style: none;
+			width: 114px;
+			height: 140px;
+			background: url(2.png) no-repeat;
+			float: left;
+			margin-right: 20px;
+		}
+	</style>
+</head>
+<body>
+  <ul>
+  	<li></li>
+  	<li></li>
+  	<li></li>
+  </ul>
+  <script type="text/javascript">
+  	var aLi=document.getElementsByTagName('li');
+
+  	//alert(this.style.background); //没有东西，不能作为判断条件
+
+  	for(var i=0;i<aLi.length;i++){
+  		aLi[i].onOff=true;//添加自定义属性
+  		aLi[i].onclick=function(){
+  			if(this.onOff){
+  				this.style.background='url(1.png) no-repeat';
+  				this.onOff=false;
+  			}else{
+  				this.style.background='url(2.png) no-repeat';
+  				this.onOff=true;
+  			}
+  		}
+  	}
+  </script>
+</body>
+</html>

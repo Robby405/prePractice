@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>匿名函数</title>
+</head>
+<body>
+<script type="text/javascript">
+//循环函数包含匿名函数
+/*function fun() {
+	var arr=[];
+	for(var i=0;i<5;i++){
+		arr[i]=function(){
+			return '元素'+i;
+		}
+	}
+	return arr;
+}
+// alert(fun());//输出一个包含五个匿名函数的数组
+//fun()=arr=[function,function,function,function,function];
+var Bb=fun();
+//alert(Bb);
+//alert(Bb[0]);alert(Bb[1]);alert(Bb[2]);
+//alert(Bb[0]());alert(Bb[1]());alert(Bb[2]());
+
+// for(var i=0;i<5;i++){
+// 	alert(Bb[i]);
+// }
+alert(Bb.length);
+for(var i=0;i<5;i++){
+	alert(Bb[i]());//Bb[i]()将得到的匿名函数执行，但是并没有得到想要的结果，全都是[元素5]
+}
+*/
+
+//让匿名函数立即执行来赋值
+/*function fun() {
+	var arr=[];
+	for(var i=0;i<5;i++){
+		arr[i]=function(){
+			return '元素'+i;
+		}()//匿名函数立即执行，函数参数按值传递，故将当前值返回
+	}
+	return arr;
+}
+var Bb=fun();
+alert(Bb.length);
+alert(Bb);
+// for(var i=0;i<5;i++){
+// 	alert(Bb[i]);
+// }
+*/
+
+//通过闭包让局部变量驻留在内存中
+function fun() {
+	var arr=[];
+	for(var i=0;i<5;i++){
+		arr[i]=function(n){
+			return function(){
+				return '元素'+n;
+			}
+		}(i);
+	}
+	return arr;
+}
+var Bb=fun();
+// alert(Bb.length);
+// alert(Bb[0]()());
+for(var i=0;i<5;i++){
+	//alert(Bb[i]);
+	alert(Bb[i]());//输出想要的结果
+}
+/*
+1.这里的匿名函数有一个参数n,也就是最终将返回的结果数值；
+2.在调用每个匿名函数时传入变量i；
+3.变量i的当前值会赋值给n;
+4.匿名函数内部创建并返回了一个访问的闭包
+5.如此数组arr中的每个函数中都有了自己的n变量的一个副本（闭包可以将局部变量贮存在内存中）
+*/
+</script>
+</body>
+</html>

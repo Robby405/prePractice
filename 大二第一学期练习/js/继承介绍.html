@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>继承</title>
+</head>
+<body>
+<script type="text/javascript">
+//对象冒充继承
+	// function Monkey(_type,_home) {
+	// 	this.type=_type;
+	// 	this.home=_home;
+	// }
+
+	// function Magic_monkey(_type,_home,arr){
+	// 	Monkey.call(this,_type,_home);
+	// 	this.skill=arr;
+	// }
+	// var wukong=new Magic_monkey('猴子','花果山',['七十二变','筋斗云']);
+	// alert(wukong.home);
+	// alert(wukong.type);
+	// alert(wukong.skill);
+
+//原型链继承
+ // function Monkey(){}
+ // Monkey.prototype.type='猴子';
+ // Monkey.prototype.say=function(){alert('我是快乐的猴子');};
+
+ // function Magic_monkey(){}
+ // //将Magic_monkey的prototype对象指向一个Monkey的实例
+ // //相当于删除了prototype对象原先的值，然后赋予一个新值
+ // Magic_monkey.prototype=new Monkey();
+ // //不能继承多个类，后面的会覆盖前面的
+ // var sunWukong=new Magic_monkey(); 
+ // alert(sunWukong.type);
+ // sunWukong.say();
+
+// 混合模式
+   function Monkey(_type,_home){
+   	this.type=_type;
+   	this.home=_home;
+   }
+   Monkey.prototype.say=function(){
+   	alert('我是快乐的小猴子，家住'+this.home);
+   }
+
+   function Magicmonkey(_type,_home){
+   	//用对象冒充继承Monkey类的type属性
+   	Monkey.call(this,_type,_home);
+   }
+   //用原型链继承Monkey类的方法
+   Magicmonkey.prototype=new Monkey();
+   var wukong=new Magicmonkey('猴子','花果山');
+   alert(wukong.type);
+   alert(wukong.home);
+   wukong.say();
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>模仿块级作用域</title>
+</head>
+<body>
+<script type="text/javascript">
+/*	function myfun(){
+		for(var i=0;i<5;i++){
+
+		}//i不会因为离开了for块就失效
+		var i;
+		alert(i);//i=5
+	}
+	myfun();
+*/
+
+
+//模仿块级作用域
+/*function myfun(){
+
+	(function(){
+		for(var i=0;i<5;i++){
+			//alert(i);
+		}
+	})()//这里定义并立即调用了一个匿名函数
+	alert(i);//i失去作用域
+}
+myfun();*/
+
+//静态私有变量
+// (function(){
+// 	var name='张三';
+// 	function user(){
+
+// 	}
+// })()
+// var VIP1=new user();//因为user()是私有函数，所以外部无法访问。
+
+(function(){
+	var name='张三';
+	user=function(){}//构造函数,user前没有var，表明是全局变量，外部可以访问到
+	user.prototype.getname=function(){
+		return name;
+	}
+})()
+
+var VIP1=new user();
+alert(VIP1.getname());
+</script>
+</body>
+</html>

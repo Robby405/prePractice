@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QQ菜单实例</title>
+	<style type="text/css">
+		ul,h2{
+			padding: 0;
+			margin: 0 auto;
+		}
+		li{
+			list-style: none;
+		}
+		#list{
+			width: 240px;
+			border:1px solid #333;
+		}
+		#list .lis{
+
+		} 
+		#list h2{
+			background: url('right.png') no-repeat 2px center #6FF;
+			height: 30px;
+			line-height: 30px;
+			text-indent: 20px;
+		}
+		#list .active{
+			background: url('down.png') no-repeat 2px center #FF9;
+			height: 30px;
+			line-height: 30px;
+			text-indent: 20px;
+		}
+		#list ul{
+			display: none;
+		}
+		#list ul li{
+			line-height: 24px;
+			border-bottom: 1px solid #333;
+		}
+		#list ul .hover{
+			background: #6FF;
+		}
+	</style>
+</head>
+<body>
+<ul id="list">
+	<li class="lis">
+		<h2>我的好友</h2>
+		<ul>
+			<li>皮皮青</li>
+			<li>米多玲</li>
+			<li>书研姐姐</li>
+			<li>皮皮琼</li>
+		</ul>
+	</li>
+	<li class="lis">
+		<h2>企业好友</h2>
+		<ul>
+			<li>皮皮青</li>
+			<li>米多玲</li>
+			<li>书研姐姐</li>
+			<li>皮皮琼</li>
+		</ul>
+	</li>
+	<li class="lis">
+		<h2>黑名单</h2>
+		<ul>
+			<li>皮皮青</li>
+			<li>米多玲</li>
+			<li>书研姐姐</li>
+			<li>皮皮琼</li>
+		</ul>
+	</li>
+</ul>
+<script type="text/javascript">
+	var oUI=document.getElementById('list');
+	var aH2=oUI.getElementsByTagName('h2');
+	var aUI=oUI.getElementsByTagName('ul');
+	var aLi=null;
+	var arrLi=[];
+	function H2Click(){
+		for(var i=0;i<aH2.length;i++){
+		aH2[i].index=i;
+		aH2[i].onclick=function(){
+			if(this.className==''){
+			aUI[this.index].style.display='block';
+			this.className='active';
+			}else{
+				aUI[this.index].style.display='none';
+				this.className='';
+			}
+		}
+	}
+	}
+	H2Click();
+	//把所有的li存在arrLi数组
+	for(var i=0;i<aUI.length;i++){
+		aLi=aUI[i].getElementsByTagName('li');
+		for(var j=0;j<aLi.length;j++){
+			arrLi.push(aLi[j]);
+		}
+	}
+
+	for(var i=0;i<arrLi.length;i++){
+		
+		arrLi[i].onclick=function(){
+			//删除所有的类再添加
+			for(var i=0;i<arrLi.length;i++){
+				arrLi[i].className='';
+				for(var j=0;j<arrLi.length;j++){
+				arrLi[i].parentNode.style.display='none';
+				}
+			}
+			
+			this.className='hover';
+			this.parentNode.style.display='block';
+
+
+		}
+
+
+	}
+</script>
+</body>
+</html>

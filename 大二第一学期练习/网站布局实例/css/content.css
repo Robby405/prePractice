@@ -1,0 +1,35 @@
+img {
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+a{
+	font-size: 12px;
+	text-decoration:none;
+}
+
+#nav a{
+	color: #050;
+}
+ul{
+   margin:0px;
+   padding:0px;
+   list-style: none;
+}
+
+#nav li{
+	width: 100px;
+	height: 30px;
+	float: left;
+	text-align: center;
+	line-height: 30px;/*行高*/
+}
+
+#nav .nt{
+	width: 1px;
+	height: 14px;
+	background: #000;
+	overflow: hidden;
+	margin-top: 8px;
+}

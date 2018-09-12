@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数据类型转换</title>
+	<style type="text/css"></style>
+</head>
+<body>
+请输入QQ号码：
+<input type="input" name="">
+<input type="button" name="" value="判断">
+
+<script type="text/javascript">
+	var arr=['100px','abc'-6,[],-98765,34,-2,0,'300',function(){alert(1);},null,document,[],true,'200px'-30,'23.45元',5,Number('abc'),function(){alert(3);}];
+		var max=arr[0];
+	//fn1();
+	function fn1(){
+		for(var i=0;i<arr.length;i++){
+			//找出所有的数字
+		/*	if(!isNaN(arr[i]))
+				if(parseFloat(arr[i])){
+					alert(arr[i]);
+					}*/
+			
+		//找出所有可以转成数字的
+		/*if(parseInt(arr[i])){
+			//alert(arr[i]);
+			if(max<arr[i]){//最大值
+				max=arr[i];
+			}
+		}*/
+
+		//找出NaN所在的位置
+		 if(isNaN(arr[i])&&!parseInt(arr[i])&&!Number(arr[i])){
+		 	alert(i);
+		 }
+	}
+	// alert(max);
+}
+
+	//判断QQ号码合法性
+	var oTxt=document.getElementsByTagName('input')[0];
+	
+
+	document.getElementsByTagName('input')[1].onclick=function(){
+		var str=oTxt.value;
+		// alert(str.length);
+		if(str.length<5||str.length>10){
+			alert('请输入长度为5~10的号码');
+			oTxt.value='';
+		}else{
+		if(parseInt(str[0])==0){
+			alert('不能以数字0开头，请重新输入');
+			oTxt.value='';
+		}
+		for(var i=0;i<str.length;i++){
+			if(!parseInt(str[i])||str[i]=='.'){
+				alert('请输入合法数字');
+				oTxt.value='';
+			}
+		}
+	}
+	}
+</script>
+	
+</body>
+</html>

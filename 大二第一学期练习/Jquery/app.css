@@ -1,0 +1,46 @@
+ul,li{
+	list-style: none;
+}
+
+ul{
+	padding: 0px;/*缩进*/
+	margin: 0px;
+}
+
+.main,.hmain{
+	background-image:url(1.jpg);
+	background-repeat:repeat-x;
+	width: 100px;
+
+}
+
+li{
+	background-color: gray;
+}
+
+a{
+	text-decoration: none;
+	padding-left: 20px;
+	display: block;
+	width: 80px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.main a,.hmain a{
+	color: white;
+	background-position: 3px center;
+}
+
+.main li a,.hmain li a{
+	color: black;
+}
+
+.main ul,.hmain ul{
+	display: none;
+}
+
+.hmain{
+	float: left;
+	margin-left: 2px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>doMove的应用</title>
+</head>
+<body>
+<script type="text/javascript" src='my.js'></script>
+<script type="text/javascript">
+	var str='';
+	var len=20;
+	var aDiv=document.getElementsByTagName('div');
+	var timer=null,timer1=null;
+	var num=0;
+	for(var i=0;i<len;i++){
+		str+='<div style="width:50px;height:50px;background:red;position:absolute;top:0px;left:'+60*i+'px"></div>'
+	}
+	document.body.innerHTML=str;
+	// var timer2=setInterval(function(){
+		document.onclick=function(){
+		clearInterval(timer);
+		if(num==0)
+		timer=setInterval(function(){
+			doMove(aDiv[num],'top',23,500)	
+			num++;
+			if(num==20){
+				clearInterval(timer);	
+				num=0;	
+				document.onclick=function(){
+					clearInterval(timer1);
+		    		timer1=setInterval(function(){
+						doMove(aDiv[num],'top',23,0);
+						num++;
+						if(num==20){
+							clearInterval(timer1);
+							num=0;
+						}
+					},100);		
+				}		
+			}
+		},100);
+	}
+	// },100)	
+</script>
+</body>
+</html>

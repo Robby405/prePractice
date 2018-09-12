@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Json简介</title>
+</head>
+<body>
+<script type="text/javascript">
+	//js中的对象表示
+/*	var user={
+		name:'张三',
+		age:'30'
+	}
+	//json表示
+	{
+		"name":"张三",
+		"age":"30"
+	}
+	//json本质上是字符串
+
+	//普通数组
+	var arr=["aaa",100,true];
+
+	//json数组
+	["aaa",100,true]//少了变量赋值
+
+	//数组对象组合嵌套使用
+    [{
+    	"name":"aaa",
+    	"age":30
+    },{
+    	"name":"bbb",
+    	"age":25
+    },{
+    	"name":"ccc",
+    	"age":18
+    }]
+*/
+
+//JSON的解析
+//假定下面的数据是从服务器加载过来的，来演示后续的操作
+/*var jsonstr='[{"name":"aaa","age":30},{"name":"bbb","age":25},{"name":"ccc","age":"18"}]';
+// alert(typeof(jsonstr));//返回string
+// json数据转换成js对象
+// var jsonobj=JSON.parse(jsonstr);
+// alert(jsonstr);
+// alert(jsonobj);
+// alert(jsonobj[0].name);
+var jsonobj=JSON.parse(jsonstr,function (key,value) {
+	if((key=='name')){
+		return 'VIP会员：'+value;
+	}else{return value;}
+});
+
+alert(jsonobj[0].name);*/
+
+//JSON的序列化
+var jsonobj=[{name:'aaa',age:30,lv:2},{name:'bbb',age:25,lv:1}]
+//alert(jsonobj[0].name);
+// var jsonstr=JSON.stringify(jsonobj);
+// alert(typeof(jsonobj));
+// alert(jsonstr);
+
+//第二个参数
+// var jsonstr=JSON.stringify(jsonobj,['lv']);
+// alert(jsonstr);//第一种用法
+// var jsonstr=JSON.stringify(jsonobj,function(key,value){
+// 	if(key=='lv'){
+// 		return '等级为'+value;
+// 	}else{
+// 		return value;
+// 	}
+// });
+// alert(jsonstr);
+
+//第三个参数表示缩进
+var jsonstr=JSON.stringify(jsonobj,null,4);
+alert(jsonstr);
+</script>
+</body>
+</html>
